@@ -1,0 +1,92 @@
+<html>
+<head>
+    <link rel="stylesheet" href="http://pasteup.guim.co.uk/0.0.5/css/fonts.pasteup.min.css">
+    <title>Sexy poll</title>
+    <style>
+        h1, h2 {
+            font-family: "Guardian Egyptian Headline", Georgia, serif;
+            margin-top: 0;
+        }
+        html {
+            font-family: "Guardian Egyptian Text", Georgia, serif;
+        }
+        a {
+            color: #005689;
+            text-decoration: none !important;
+            border-bottom: 1px solid #dcdcdc;
+            transition: border-color 0.15s ease-out;
+        }
+        a:hover {
+            border-color: #6e99b2;
+        }
+
+        #container {
+            text-align: center;
+            max-width: 600px;
+            border: 1px solid grey;
+            padding: 20px;
+        }
+        .chart {
+            display: none;
+            margin-bottom: 5px;
+        }
+        .slide {
+            position: relative;
+            display: none;
+        }
+        .is-visible {
+            display: block;
+        }
+        button {
+            font-size: 20px;
+            background-color: #005689;
+            color: white;
+            border: 0;
+            padding: 10px;
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        .back {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/template" id="template">
+        <div class="chart {{#current > 0}}is-visible{{/current}}"></div>
+        {{#current > 0}}
+            <p>50% said "{{questions[current - 1].answers[0]}}" to "{{questions[current - 1].title}}"</p>
+        {{/current}}
+        {{#questions:num}}
+            <div class="slide {{#current == num}}is-visible{{/current}}">
+                <h1>{{title}}</h1>
+                {{#answers}}
+                    <button on-click="next">{{.}}</button>
+                {{/answers}}
+                {{#current > 0}}
+                    <a href="#back" class="back" on-click="prev">Back</a>
+                {{/current}}
+            </div>
+        {{/questions}}
+        {{#current == questions.length}}
+            <div class="slide is-visible">
+                <button on-click="next">See your celebrity</button>
+                <a href="#back" class="back" on-click="prev">Back</a>
+            </div>
+        {{/current}}
+        {{#current == questions.length + 1}}
+            <div class="slide is-visible">
+                {{
+            </div>
+        {{/current}}
+    </script>
+
+    <script src="static/jquery.min.js"></script>
+    <script src="static/highcharts/js/highcharts.js"></script>
+    <script src="static/ractive.js"></script>
+    <script src="static/main.js"></script>
+</body>
+</html>

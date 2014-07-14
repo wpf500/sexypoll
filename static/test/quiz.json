@@ -1,0 +1,51 @@
+{
+    "_id": "81231dsadasda",
+    "questions": [
+        {
+            "title": "Should Scotland be independent?",
+            "answers": ["Yes", "Not sure", "No"]
+        },
+        {
+            "title": "Do you live in Scotland?",
+            "answers": ["Yes", "No"]
+        }
+    ],
+    "outcomes": [
+        {
+            "text": "You are Billy Bragg. You dont live in scotland but agree with Scottish independence. Share your result",
+            "img": "http://i.guim.co.uk/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/4/28/1398709329928/Billy-Bragg-012.jpg",
+            "url": "http://www.theguardian.com/commentisfree/2014/apr/23/scotland-vote-yes-set-english-free-independence-devolution",
+            "answers": ["Yes", "No"]
+        },
+        {
+            "text": "You are Eddi Reader. You live in Scotland and agree with Scottish independence. Share your result",
+            "img": "http://www.warringtonguardian.co.uk/resources/images/2708742.jpg?type=articleLandscape",
+            "url": "http://www.theguardian.com/politics/2014/jul/12/scottish-stars-yes-no-independence-vote",
+            "answers": ["Yes", "Yes"]
+        },
+        {
+            "text": "You are JK Rowling. You live in Scotland but do not agree with Scottish independence. Share your result ",
+            "img": "http://i.guim.co.uk/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/4/28/1398684741602/JK-Rowling-009.jpg",
+            "url": "http://www.theguardian.com/books/2014/jun/11/jk-rowling-donates-scotland-anti-independence-campaign",
+            "answers": ["No", "Yes"]
+        },
+        {
+            "text": "You are David Bowie. You dont live in Scotland and do not agree with Scottish independence. Share your result.",
+            "img": "http://i.guim.co.uk/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/2/20/1392854745000/David-Bowie-008.jpg",
+            "url": "http://www.theguardian.com/politics/2014/jul/12/scottish-stars-yes-no-independence-vote",
+            "answers": ["No", "No"]
+        },
+        {
+            "text": "You are Billy Connoly. You're not sure on this one. Share your result.",
+            "img": "http://i.guim.co.uk/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/2/17/1392663316265/Billy-Connolly-012.jpg",
+            "url": "http://www.theguardian.com/culture/2014/feb/17/billy-connolly-not-vote-scottish-independence-referendum",
+            "answers": ["Not sure", "No"]
+        },
+        {
+            "text": "You are Billy Connoly. You're not sure on this one. Share your result.",
+            "img": "http://i.guim.co.uk/w-620/h--/q-95/sys-images/Guardian/Pix/pictures/2014/2/17/1392663316265/Billy-Connolly-012.jpg",
+            "url": "http://www.theguardian.com/culture/2014/feb/17/billy-connolly-not-vote-scottish-independence-referendum",
+            "answers": ["Not sure", "Yes"]
+        }
+    ]
+}
