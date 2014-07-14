@@ -3,18 +3,43 @@
     "questions": [
         {
             "title": "Should Scotland be independent?",
-            "answers": ["Yes", "No"],
-            "type": "single"
+            "answers": [{
+                "key": "Yes",
+                "value": 60
+            },
+            {
+                "key": "No",
+                "value": 40
+            }]
         },
         {
-            "title": "how old are you?",
-            "answers": ["16-20", "20-25"],
-            "type": "single"
+            "title": "How old are you?",
+            "answers": [{
+                "key": "16-20",
+                "value": 30
+            },
+            {
+                "key": "20-25",
+                "value": 70
+            }]
         },
         {
-            "title": "what newspapers do you read?",
-            "type": "multiple",
-            "answers": ["Guardian", "Telegraph"]
+            "title": "What newspapers do you read?",
+            "answers": [{
+                "key": "Guardian",
+                "value": 40
+            },
+            {
+                "key": "Telegraph",
+                "value": 60
+            }]
+        }
+    ],
+    "results": [
+        {
+            "image": ".../",
+            "bucket": ["Yes", "16-20", "Guardian"],
+            "url": "guardian article.com"
         }
     ]
 }
