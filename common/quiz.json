@@ -1,6 +1,7 @@
 {
     "_id": "some id here",
     "question": "asda",
+    "answers": [],
     "sub": [
         {
             "question": "how old are you?",
