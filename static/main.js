@@ -51,7 +51,11 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
                     var data = $.map(quiz.questions[0].answers, function (key) {
                         var value = results[key] || 0;
                         quiz.total += value;
-                        return [[key, value]];
+                        return [{
+                            'name': key,
+                            'y': value,
+                            'color': key == answers[0] ? '#00528C' : '#C9C9C9'
+                        }];
                     });
                     quiz.yours = results[answers[0]];
                     chart.series[0].setData(data);
