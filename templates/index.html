@@ -7,8 +7,45 @@
             font-family: "Guardian Egyptian Headline", Georgia, serif;
             margin-top: 0;
         }
+        h3 {
+            font-weight: normal;
+        }
         html {
             font-family: "Guardian Egyptian Text", Georgia, serif;
+        }
+        p {
+            line-height: 24px;
+        }
+        #container {
+            text-align: center;
+            max-width: 600px;
+            border: 1px solid grey;
+            padding: 20px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+        .chart {
+            display: none;
+            margin-bottom: 5px;
+            z-index: 2;
+        }
+        .slide {
+            display: none;
+            position: relative;
+            z-index: 2;
+        }
+        .is-visible {
+            display: block;
+        }
+        button {
+            font-size: 20px;
+            font-family: inherit;
+            background-color: #34c8dc;
+            color: white;
+            border: 0;
+            padding: 10px;
+            min-width: 100px;
+            margin-right: 10px;
         }
         a {
             color: #005689;
@@ -19,37 +56,49 @@
         a:hover {
             border-color: #6e99b2;
         }
-
-        #container {
-            text-align: center;
-            max-width: 600px;
-            border: 1px solid grey;
-            padding: 20px;
-        }
-        .chart {
-            display: none;
-            margin-bottom: 5px;
-        }
-        .slide {
-            position: relative;
-            display: none;
-        }
-        .is-visible {
-            display: block;
-        }
-        button {
-            font-size: 20px;
-            background-color: #005689;
-            color: white;
-            border: 0;
-            padding: 10px;
-            min-width: 100px;
-            margin-right: 10px;
-        }
         .back {
             position: absolute;
-            left: 0;
-            bottom: 0;
+            left: 10px;
+            bottom: 10px;
+            z-index: 5;
+        }
+        .outcome {
+            display: table-cell;
+            border-bottom: 0;
+        }
+        .outcome > img {
+            border: 5px solid #ccc;
+            transition: border-color 0.3s ease-out;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .outcome:hover > img {
+            border-color: black;
+        }
+        img {
+            vertical-align: middle;
+        }
+        .share {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .share.mini {
+            width: 26px;
+            margin-top: -3px;
+            margin-right: 2px;
+        }
+        .thumb {
+            float: left;
+            margin: 0 5px 5px 0;
+        }
+        .hl {
+            font-size: 22px;
+            color: #005689;
+            font-weight: bold;
+        }
+        .hl.large {
+            font-size: 30px;
         }
     </style>
 </head>
@@ -58,28 +107,48 @@
     <script type="text/template" id="template">
         <div class="chart {{#current > 0}}is-visible{{/current}}"></div>
         {{#current > 0}}
-            <p>50% said "{{questions[current - 1].answers[0]}}" to "{{questions[current - 1].title}}"</p>
+            <a href="#back" class="back" on-click="prev">Back</a>
+            <p>
+                <span class="hl large">50%</span> of you said
+                <span class="hl">{{questions[current - 1].answers[0].toLowerCase()}}</span>
+                to "{{questions[current - 1].title}}"
+            </p>
         {{/current}}
         {{#questions:num}}
             <div class="slide {{#current == num}}is-visible{{/current}}">
+                {{#current == 0}}<p>What do you think:</p>{{/current}}
+                {{#current > 0}}<p>Tell us more:</p>{{/current}}
                 <h1>{{title}}</h1>
                 {{#answers}}
                     <button on-click="next">{{.}}</button>
                 {{/answers}}
-                {{#current > 0}}
-                    <a href="#back" class="back" on-click="prev">Back</a>
-                {{/current}}
             </div>
         {{/questions}}
         {{#current == questions.length}}
             <div class="slide is-visible">
-                <button on-click="next">See your celebrity</button>
-                <a href="#back" class="back" on-click="prev">Back</a>
-            </div>
-        {{/current}}
-        {{#current == questions.length + 1}}
-            <div class="slide is-visible">
-                {{
+                <h3><img src="static/imgs/share.png" class="share" /> Share this</h3>
+                <h3><img src="static/imgs/add.png" class="share" /> Keep me posted on this topic</h3>
+                <div style="text-align: left; overflow: hidden">
+                    {{#outcomes}}
+                        {{#class}}
+                            <div style="display: table; width: 100%">
+                                <a href="{{url}}" class="outcome"><img src="{{img}}" /></a>
+                                <div style="display: table-cell; vertical-align: middle; padding-left: 15px; width: 100%">
+                                    <p><b>Who shares your views</b><br />{{text}}</p>
+                                    <p><img src="static/imgs/share.png" class="share mini" /> Share this</p>
+                                </div>
+                            </div>
+                        {{/class}}
+                    {{/outcomes}}
+                    <p><b>Articles that might interest you:</b></p>
+                    {{#articles}}
+                        <p style="clear: left">
+                            <a href="{{webUrl}}"><img src="{{fields.thumbnail}}" class="thumb" /></a>
+                            <a href="{{webUrl}}">{{webTitle}}</a><br />
+                            {{fields.byline}}
+                        </p>
+                    {{/articles}}
+                </div>
             </div>
         {{/current}}
     </script>
