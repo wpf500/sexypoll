@@ -14,7 +14,7 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
     quiz = quiz[0];
     quiz.current = window.localStorage['current'] || 0;
     quiz.articles = articles[0].response.results;
-    quiz.numbers = ['', '', 'two', 'three', 'four'];
+    quiz.numbers = ['', '', '', ' two', ' three'];
 
     var ractive = new Ractive({
         'el': '#container',
@@ -48,7 +48,8 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
             future =
                 $.getJSON(apiURL + '/users/' + userId + '/results/' + quizId + '/' + quiz.current, function (results) {
                     quiz.total = 0;
-                    var data = $.map(results, function (value, key) {
+                    var data = $.map(quiz.questions[0].answers, function (key) {
+                        var value = results[key] || 0;
                         quiz.total += value;
                         return [[key, value]];
                     });

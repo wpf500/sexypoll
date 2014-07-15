@@ -111,9 +111,7 @@
             <p>
                 <span class="hl large">{{Math.round(yours/total*100)}}%</span> of you agreed
                 {{#current > 1}}
-                    on the
-                {{#current == 1}}first question{{/current}}
-                    {{#current > 1}}last {{numbers[current]}} questions{{/current}}
+                    on the last{{numbers[current]}} questions
                 {{/current}}
             </p>
         {{/current}}
