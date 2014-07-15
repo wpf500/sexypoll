@@ -89,6 +89,6 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
         }
     });
 
-    //setInterval(update, 10000);
+    setInterval(update, 10000);
     update();
 });
