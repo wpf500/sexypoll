@@ -109,9 +109,12 @@
         {{#current > 0}}
             <a href="#back" class="back" on-click="prev">Back</a>
             <p>
-                <span class="hl large">50%</span> of you said
-                <span class="hl">{{questions[current - 1].answers[0].toLowerCase()}}</span>
-                to "{{questions[current - 1].title}}"
+                <span class="hl large">{{Math.round(yours/total*100)}}%</span> of you agreed
+                {{#current > 1}}
+                    on the
+                {{#current == 1}}first question{{/current}}
+                    {{#current > 1}}last {{numbers[current]}} questions{{/current}}
+                {{/current}}
             </p>
         {{/current}}
         {{#questions:num}}

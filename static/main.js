@@ -1,9 +1,8 @@
 var apiURL = 'http://ancient-chamber-5314.herokuapp.com/api'
 var quizId = '53c5158399024d3a59000001'
 
-var userId = window.localStorage['userId'];
-var userFuture = userId ? $.noop() : $.post(apiURL + '/users');
-var answers = [];
+var userFuture = window.localStorage['userId'] ? $.noop() : $.post(apiURL + '/users');
+var answers = (window.localStorage['answers'] || '').split('|');
 
 var quizFuture = $.getJSON(apiURL + '/quizzes/' + quizId);
 var articlesFuture = $.getJSON('http://beta.content.guardianapis.com/search?api-key=gu-hackday-2014&tag=politics/scottish-independence&show-fields=thumbnail,byline&page-size=5');
@@ -15,6 +14,7 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
     quiz = quiz[0];
     quiz.current = window.localStorage['current'] || 0;
     quiz.articles = articles[0].response.results;
+    quiz.numbers = ['', '', 'two', 'three', 'four'];
 
     var ractive = new Ractive({
         'el': '#container',
@@ -43,15 +43,27 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
     var chart = $('.chart').highcharts();
 
     function update(results) {
-        if (results) {
-            var data = $.map(results, function (value, key) {
-                return [key, value];
-            });
-            chart.series[0].setData(data);
+        var future;
+        if (quiz.current > 0) {
+            future =
+                $.getJSON(apiURL + '/users/' + userId + '/results/' + quizId + '/' + quiz.current, function (results) {
+                    quiz.total = 0;
+                    var data = $.map(results, function (value, key) {
+                        quiz.total += value;
+                        return [[key, value]];
+                    });
+                    quiz.yours = results[answers[0]];
+                    chart.series[0].setData(data);
+                });
+        } else {
+            future = $.noop();
         }
 
-        ractive.update();
-        window.localStorage['current'] = quiz.current;
+        $.when(future).done(function () {
+            ractive.update();
+            window.localStorage['current'] = quiz.current;
+            window.localStorage['answers'] = answers.join('|');
+        });
     }
 
     ractive.on('next', function (evt) {
@@ -64,7 +76,7 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
                 })
             }, function () {
                 quiz.current++;
-                $.getJSON(apiURL + '/users/' + userId + '/results/' + quizId + '/' + quiz.current, update);
+                update();
             });
         }
     });
@@ -76,5 +88,6 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
         }
     });
 
+    //setInterval(update, 10000);
     update();
 });
