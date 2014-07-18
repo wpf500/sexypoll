@@ -1,0 +1,1 @@
+crtg_content = ''; (function(){document.cookie = 'cto2_guardian=' + escape(crtg_content) + '; path=/; expires=Sat, 16 Aug 2014 23:58:37 GMT; domain=theguardian.com';})();

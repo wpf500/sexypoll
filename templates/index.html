@@ -13,13 +13,14 @@
         html {
             font-family: "Guardian Egyptian Text", Georgia, serif;
         }
+        body {
+            margin: 0;
+        }
         p {
             line-height: 24px;
         }
         #container {
             text-align: center;
-            max-width: 600px;
-            border: 1px solid grey;
             padding: 20px;
             padding-bottom: 40px;
             position: relative;
@@ -46,6 +47,7 @@
             padding: 10px;
             min-width: 100px;
             margin-right: 10px;
+            cursor: pointer;
         }
         a {
             color: #005689;
@@ -117,8 +119,10 @@
         {{/current}}
         {{#questions:num}}
             <div class="slide {{#current == num}}is-visible{{/current}}">
-                {{#current == 0}}<p>What do you think:</p>{{/current}}
-                {{#current > 0}}<p>Tell us more:</p>{{/current}}
+                <p>
+                    {{#current == 0}}What do you think:{{/current}}
+                    {{#current > 0}}Tell us more:{{/current}}
+                </p>
                 <h1>{{title}}</h1>
                 {{#answers}}
                     <button on-click="next">{{.}}</button>

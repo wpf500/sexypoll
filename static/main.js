@@ -42,6 +42,10 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
 
     var chart = $('.chart').highcharts();
 
+    window.onresize = function () {
+        window.parent.document.getElementById('poll').style.height = $('#container').outerHeight() + 'px';
+    }
+
     function update(results) {
         var future;
         if (quiz.current > 0) {
@@ -68,6 +72,7 @@ $.when(userFuture, quizFuture, articlesFuture).done(function(user, quiz, article
             ractive.update();
             window.localStorage['current'] = quiz.current;
             window.localStorage['answers'] = answers.join('|');
+            window.onresize();
         });
     }
 
