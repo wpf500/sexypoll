@@ -1,0 +1,6 @@
+production:
+  sessions:
+    default:
+      uri: mongodb://polladmin:UEQUueirubBIN6V1uXSy@ds053529.mongolab.com:53529/polldb
+  options:
+      raise_not_found_error: false

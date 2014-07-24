@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+ruby "2.1.2"
+gem "sinatra", "~> 1.4.4"
+gem "sinatra-cross_origin"
+gem 'mongoid'
+gem "json"
+gem "rake"
+gem "minitest", "~> 4.2"
+gem "rack-test"
+gem "pry"
+gem 'rest-client'
