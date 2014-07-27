@@ -1,0 +1,2 @@
+GET     /quiz/:id    controllers.Quiz.read(id)
+POST    /quiz        controllers.Quiz.create
